@@ -4,6 +4,7 @@ Code for "Robust schedules of adoptive cell therapy in a virtual murine cohort o
 
 Code is organized as follows:
 
+<img width="3788" height="3075" alt="image" src="https://github.com/user-attachments/assets/aac8738d-32c9-4ee4-bc0e-ede385858b15" />
 
 
 External code can be found at the following links:

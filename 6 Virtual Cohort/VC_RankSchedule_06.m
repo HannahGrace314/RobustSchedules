@@ -147,7 +147,7 @@ savefigure = [0, 0, 0, 0, 0]; % bar all, specific bar, pie, scatter, trajectorie
 dateStr = datestr(now, 'ddmmmyyyy');
 
 specificrank = 1;
-which_obj = 1; % see obj_titles
+which_obj = 7; % see obj_titles
 numranks = nSched;
 
 jpg_string = ["fts", "fcs", "cumulativetumor", "maxtumor", "mintumor", ...
@@ -271,9 +271,11 @@ function rank = rank_schedules(response, distinguisher, sort_mode)
     [nMice, nSched] = size(response);
     rank_matrix = zeros(nMice, nSched);
     for mouse = 1:nMice
-        [sort_response, sort_idx] = sort(response(mouse,:),sort_direction);
-        [~, ~, m_rank_idx] = unique(sort_response); 
-        rank_matrix(mouse, sort_idx) = m_rank_idx;
+        [~,~,m_rank_idx] = unique(response(mouse,:));
+        if strcmp(sort_direction,'descend')
+            m_rank_idx = (max(m_rank_idx)+1)*ones(size(m_rank_idx)) - m_rank_idx; % flipping the order
+        end
+        rank_matrix(mouse,:) = m_rank_idx;
     end
 
     % Counting how often each schedule gets each rank
